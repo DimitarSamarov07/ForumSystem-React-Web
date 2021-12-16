@@ -1,0 +1,152 @@
+/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+}
+
+
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    font-size: 14px;
+    font-family: 'Titillium Web', sans-serif;
+}
+
+.swal2-popup {
+    font-size: 1.6rem !important;
+}
+
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.border-top {
+    border-top: 1px solid #e5e5e5;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+    font-size: 1rem;
+    line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    line-height: 60px; /* Vertically center the text there */
+}
+
+.btn-custom-document-blue {
+    background-color: DodgerBlue; /* Blue background */
+    border: none; /* Remove borders */
+    color: white; /* White text */
+    padding: 12px 16px; /* Some padding */
+    font-size: 16px; /* Set a font size */
+    cursor: pointer; /* Mouse pointer on hover */
+    right: 90px;
+    position: absolute;
+
+}
+
+/* Darker background on mouse-over */
+.btn-custom-document-blue:hover {
+    background-color: RoyalBlue;
+}
+
+.btn-custom-post {
+    background-color: white; /* Blue background */
+    border: none; /* Remove borders */
+    color: black; /* White text */
+    padding: 12px 16px; /* Some padding */
+    font-size: 16px; /* Set a font size */
+    cursor: pointer; /* Mouse pointer on hover */
+    right: 1px;
+    position: absolute;
+}
+
+/* Darker background on mouse-over */
+.btn-custom-post:hover {
+    background-color: orangered;
+}
+
+.img-circle-profile {
+    height: 250px;
+    width: 250px;
+    border-radius: 50%;
+}
+
+.img-circle-post {
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+}
+
+.img-circle-list-profiles {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+/*Pagination*/
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+    background-color: #e74c3c;
+    border-color: #e74c3c;
+}
+
+.pagination li a:hover {
+    background: #c0392b;
+    border-color: #c0392b;
+}
+
+.pagination li a {
+    color: #000000;
+    padding: 5px 15px;
+}
+
+/*Pagination Without Space*/
+.pagination-no-space .pagination {
+    margin: 0;
+}
+
+
+
