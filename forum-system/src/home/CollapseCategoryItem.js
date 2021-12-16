@@ -18,8 +18,7 @@ const CollapseCategoryItem = ({category}) => {
 
                         {category.description}
                         <div className="text-muted">
-                            {category.postsCount} Posts by
-                            {category.usersCount} Users
+                            {category.postsCount} Posts by {category.usersCount} Users
                         </div>
 
                         <br/>

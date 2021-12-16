@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import Layout from "./core/Layout.js";
 import Home from './home/Home.js';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
@@ -9,7 +10,9 @@ ReactDOM.render(
     <React.StrictMode>
         <Router>
             <Routes>
-                <Route path="/" element={<Home/>}/>
+                <Route path="/" element={<Layout/>}>
+                    <Route exact path="/" element={<Home/>}/>
+                </Route>
             </Routes>
         </Router>
     </React.StrictMode>,
