@@ -29,10 +29,10 @@ const Header = () => {
                             {user ?
                                 <li className="nav-item">
                                     <a className="nav-link text-dark" href="javascript:void(0)"
-                                       routerLink={`/profile/index/${user.username}`}>Hello {user.username}</a>
+                                       routerLink={`/profile/index/${user?.username}`}>Hello {user?.username}</a>
                                 </li> : ""}
 
-                            {user.isAdmin ? <HeaderAdminElements/> : ""}
+                            {user?.isAdmin ? <HeaderAdminElements/> : ""}
                             {user ? <Logout/> : <HeaderGuestElements/>}
                         </ul>
                         <ul className="navbar-nav flex-grow-1">

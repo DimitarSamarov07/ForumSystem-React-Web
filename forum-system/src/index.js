@@ -5,6 +5,7 @@ import Layout from "./core/Layout.js";
 import Home from './home/Home.js';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
+import Login from "./user/Login.js";
 
 ReactDOM.render(
     <React.StrictMode>
@@ -12,6 +13,9 @@ ReactDOM.render(
             <Routes>
                 <Route path="/" element={<Layout/>}>
                     <Route exact path="/" element={<Home/>}/>
+                    <Route path="user">
+                        <Route path={"login"} element={<Login/>}/>
+                    </Route>
                 </Route>
             </Routes>
         </Router>
