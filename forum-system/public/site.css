@@ -1,5 +1,8 @@
 /* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
+* {
+    box-sizing: border-box;
+}
 
 a.navbar-brand {
     white-space: normal;
@@ -19,6 +22,8 @@ a.navbar-brand {
 html {
     font-size: 14px;
     font-family: 'Titillium Web', sans-serif;
+    /*Make the controlled scroll smooth*/
+    scroll-behavior: smooth;
 }
 
 .swal2-popup {
