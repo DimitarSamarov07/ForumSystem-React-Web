@@ -1,3 +1,4 @@
+import Backendless from "backendless";
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
@@ -7,6 +8,10 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import Login from "./user/Login.js";
 import Register from "./user/Register.js";
+
+Backendless.serverURL = "https://eu-api.backendless.com";
+Backendless.initApp(process.env.REACT_APP_BACKENDLESS_APP_ID, process.env.REACT_APP_BACKENDLESS_JS_API_KEY)
+
 
 ReactDOM.render(
     <React.StrictMode>
