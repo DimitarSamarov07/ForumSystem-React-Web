@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 import "./Header.css"
 import HeaderAdminElements from "./HeaderAdminElements.js";
 import HeaderGuestElements from "./HeaderGuestElements.js";
@@ -28,8 +29,10 @@ const Header = () => {
                         <ul className="navbar-nav">
                             {user ?
                                 <li className="nav-item">
-                                    <a className="nav-link text-dark" href="javascript:void(0)"
-                                       routerLink={`/profile/index/${user?.username}`}>Hello {user?.username}</a>
+                                    <Link to={`/profile/index/${user?.username}`}>
+                                        <a className="nav-link text-dark"
+                                           href="javascript:void(0)">Hello {user?.username}</a>
+                                    </Link>
                                 </li> : ""}
 
                             {user?.isAdmin ? <HeaderAdminElements/> : ""}
@@ -37,11 +40,14 @@ const Header = () => {
                         </ul>
                         <ul className="navbar-nav flex-grow-1">
                             <li className="nav-item">
-                                <a className="nav-link text-dark" href="javascript:void(0)" routerLink="/">Home</a>
+                                <Link to="/">
+                                    <a className="nav-link text-dark" href="javascript:void(0)">Home</a>
+                                </Link>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link text-dark" href="javascript:void(0)"
-                                   routerLink="/category/list">Categories</a>
+                                <Link to="/category/list">
+                                    <a className="nav-link text-dark" href="javascript:void(0)">Categories</a>
+                                </Link>
                             </li>
                         </ul>
                     </div>
