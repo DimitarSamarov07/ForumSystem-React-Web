@@ -6,6 +6,7 @@ import Home from './home/Home.js';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import Login from "./user/Login.js";
+import Register from "./user/Register.js";
 
 ReactDOM.render(
     <React.StrictMode>
@@ -15,6 +16,7 @@ ReactDOM.render(
                     <Route exact path="/" element={<Home/>}/>
                     <Route path="user">
                         <Route path={"login"} element={<Login/>}/>
+                        <Route path={"register"} element={<Register/>}/>
                     </Route>
                 </Route>
             </Routes>

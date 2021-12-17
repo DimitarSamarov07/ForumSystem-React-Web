@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import {Link} from "react-router-dom";
 
 const Login = () => {
     let incorrectCredentials = false;
@@ -53,7 +54,9 @@ const Login = () => {
                         </div>
                         <div className="form-group">
                             <p>
-                                <a href="javascript:void(0)" routerLink="/user/register">Register as a new user</a>
+                                <Link to="/user/register">
+                                    <a href="javascript:void(0)">Register as a new user</a>
+                                </Link>
                             </p>
                         </div>
                     </form>
