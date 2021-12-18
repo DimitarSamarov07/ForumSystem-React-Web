@@ -32,6 +32,7 @@ export class UserService {
         const user = new Backendless.User();
         Object.assign(user, {username, email, password})
         await Backendless.UserService.register(user);
+        await this.logoutUser()
         await Backendless.UserService.login(username, password, true);
     }
 
@@ -56,6 +57,28 @@ export class UserService {
             return await Backendless.UserService.getCurrentUser();
         } catch (e) {
             return null;
+        }
+    }
+
+    async verifyEmailUnique(email) {
+        let emailClause = `email = '${email}'`
+        let queryBuilder = Backendless.DataQueryBuilder.create().setWhereClause(emailClause);
+
+        try {
+            return !await this.userStore.findFirst(queryBuilder);
+        } catch (e) {
+            return false;
+        }
+    }
+
+    async verifyUsernameUnique(username) {
+        let usernameClause = `username = '${username}'`
+        let queryBuilder = Backendless.DataQueryBuilder.create().setWhereClause(usernameClause);
+
+        try {
+            return !await this.userStore.findFirst(queryBuilder);
+        } catch (e) {
+            return false;
         }
     }
 
