@@ -1,10 +1,18 @@
 import React, {useState} from "react";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import {UserService} from "../services/user.service.js";
+
+const userService = new UserService();
 
 const Login = () => {
-    let incorrectCredentials = false;
+    let [incorrectCredentials, setIncorrectCredentials] = useState(false);
+
+    let [username, setUsername] = useState("");
+    let [password, setPassword] = useState("");
+
     let [isUsernameEmpty, setUsernameState] = useState(false);
     let [isPasswordEmpty, setPasswordState] = useState(false);
+    const navigate = useNavigate();
 
 
     let onUsernameBlur = (e) => {
@@ -23,6 +31,30 @@ const Login = () => {
         }
     }
 
+    let onUsernameChange = (e) => {
+        setUsername(e.target.value);
+    }
+
+    let onPasswordChange = (e) => {
+        setPassword(e.target.value);
+    }
+
+    let onFormSubmit = async (e) => {
+        e.preventDefault();
+
+        if (!isUsernameEmpty && !isPasswordEmpty) {
+            setIncorrectCredentials(false);
+            let success = await userService.loginUser(username, password);
+
+            if (!success) {
+                setIncorrectCredentials(true);
+            } else {
+                navigate("/");
+            }
+
+        }
+    }
+
     return (
         <div className="row">
             <div className="col-md-4">
@@ -35,7 +67,8 @@ const Login = () => {
                             : ""}
                         <div className="form-group">
                             <label htmlFor="username">Username</label>
-                            <input id="username" className="form-control" onBlur={onUsernameBlur} name="username"/>
+                            <input id="username" className="form-control" onChange={onUsernameChange}
+                                   onBlur={onUsernameBlur} name="username"/>
                             {isUsernameEmpty ?
                                 <span className="text-danger">Username is required.</span>
                                 : ""}
@@ -43,14 +76,15 @@ const Login = () => {
                         </div>
                         <div className="form-group">
                             <label htmlFor="password">Password</label>
-                            <input id="password" className="form-control" onBlur={onPasswordBlur} name="password"
+                            <input id="password" className="form-control" onChange={onPasswordChange}
+                                   onBlur={onPasswordBlur} name="password"
                                    type="password"/>
                             {isPasswordEmpty ?
                                 <span className="text-danger">Password is required.</span>
                                 : ""}
                         </div>
                         <div className="form-group">
-                            <button type="submit" className="btn btn-primary">Log in</button>
+                            <button type="submit" className="btn btn-primary" onClick={onFormSubmit}>Log in</button>
                         </div>
                         <div className="form-group">
                             <p>

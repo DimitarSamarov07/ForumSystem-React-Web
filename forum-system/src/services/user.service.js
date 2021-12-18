@@ -45,6 +45,9 @@ export class UserService {
             if (!rememberMe) {
                 rememberMe = false;
             }
+            // Ensure clean login
+            await this.logoutUser();
+
             await Backendless.UserService.login(username, password, rememberMe);
             return true;
         } catch (e) {
