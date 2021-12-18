@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
+import {doLogin, useAuthDispatch, useAuthState} from "../core/auth-context.js";
 import {UserService} from "../services/user.service.js";
 
 const userService = new UserService();
@@ -13,6 +14,13 @@ const Login = () => {
     let [isUsernameEmpty, setUsernameState] = useState(false);
     let [isPasswordEmpty, setPasswordState] = useState(false);
     const navigate = useNavigate();
+
+    const {user: loggedUser} = useAuthState();
+    const dispatch = useAuthDispatch();
+
+    if (loggedUser) {
+        navigate("/");
+    }
 
 
     let onUsernameBlur = (e) => {
@@ -44,11 +52,12 @@ const Login = () => {
 
         if (!isUsernameEmpty && !isPasswordEmpty) {
             setIncorrectCredentials(false);
-            let success = await userService.loginUser(username, password);
+            let success = await userService.loginUser(username, password, true);
 
             if (!success) {
                 setIncorrectCredentials(true);
             } else {
+                await doLogin(dispatch);
                 navigate("/");
             }
 

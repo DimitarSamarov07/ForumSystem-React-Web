@@ -1,15 +1,28 @@
-import React from "react";
-import {Link} from "react-router-dom";
+import React, {useEffect} from "react";
+import {Link, useNavigate} from "react-router-dom";
+import {UserService} from "../services/user.service.js";
+import {doLogin, doLogout, useAuthDispatch, useAuthState} from "./auth-context.js";
 import "./Header.css"
 import HeaderAdminElements from "./HeaderAdminElements.js";
 import HeaderGuestElements from "./HeaderGuestElements.js";
-import Logout from "./Logout.js";
+
+const userService = new UserService();
 
 const Header = () => {
-    let user = {
-        "isAdmin": true,
-        "username": "Jeff_The_Leaf"
-    };
+    const {user} = useAuthState();
+    const dispatch = useAuthDispatch();
+    const navigate = useNavigate();
+
+    useEffect(async () => {
+        await doLogin(dispatch);
+    }, [])
+
+    let logout = async () => {
+        await userService.logoutUser();
+        doLogout(dispatch);
+        navigate("/")
+    }
+
 
     return (
         <header>
@@ -36,7 +49,12 @@ const Header = () => {
                                 </li> : ""}
 
                             {user?.isAdmin ? <HeaderAdminElements/> : ""}
-                            {user ? <Logout/> : <HeaderGuestElements/>}
+                            {user ?
+                                <li className="nav-item">
+                                    <a onClick={logout} href="javascript:void(0)" className="btn btn-link navbar-btn
+                            navbar-link">Logout
+                                    </a>
+                                </li> : <HeaderGuestElements/>}
                         </ul>
                         <ul className="navbar-nav flex-grow-1">
                             <li className="nav-item">

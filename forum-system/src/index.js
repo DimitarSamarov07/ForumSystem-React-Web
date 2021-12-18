@@ -2,6 +2,7 @@ import Backendless from "backendless";
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import {AuthProvider} from "./core/auth-context.js";
 import Layout from "./core/Layout.js";
 import Home from './home/Home.js';
 import './index.css';
@@ -15,17 +16,19 @@ Backendless.initApp(process.env.REACT_APP_BACKENDLESS_APP_ID, process.env.REACT_
 
 ReactDOM.render(
     <React.StrictMode>
-        <Router>
-            <Routes>
-                <Route path="/" element={<Layout/>}>
-                    <Route exact path="/" element={<Home/>}/>
-                    <Route path="user">
-                        <Route path={"login"} element={<Login/>}/>
-                        <Route path={"register"} element={<Register/>}/>
+        <AuthProvider>
+            <Router>
+                <Routes>
+                    <Route path="/" element={<Layout/>}>
+                        <Route exact path="/" element={<Home/>}/>
+                        <Route path="user">
+                            <Route path={"login"} element={<Login/>}/>
+                            <Route path={"register"} element={<Register/>}/>
+                        </Route>
                     </Route>
-                </Route>
-            </Routes>
-        </Router>
+                </Routes>
+            </Router>
+        </AuthProvider>
     </React.StrictMode>,
     document.getElementById('root')
 );
