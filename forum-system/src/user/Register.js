@@ -1,16 +1,25 @@
 import React, {useState} from "react";
+import {useNavigate} from "react-router-dom";
+import {UserService} from "../services/user.service.js";
 
 let validator = require("email-validator");
+let userService = new UserService();
 
 const Register = () => {
     let [usernameError, setUsernameError] = useState("");
+    let [username, setUsername] = useState("");
     let [emailError, setEmailError] = useState("");
+    let [email, setEmail] = useState("");
     let [passwordError, setPasswordError] = useState("");
     let [password, setPassword] = useState("");
     let [repeatPassError, setRepeatPassError] = useState("");
+    let [repeatPass, setRepeatPass] = useState("");
+    const navigate = useNavigate();
 
     let onUsernameChange = (e) => {
         let usernameValue = e.target.value;
+        setUsername(usernameValue);
+
         if (!usernameValue) {
             setUsernameError("Username is required.");
         } else {
@@ -26,6 +35,7 @@ const Register = () => {
 
     let onEmailChange = (e) => {
         let emailValue = e.target.value;
+        setEmail(emailValue);
 
         if (!emailValue) {
             setEmailError("Email is required.")
@@ -39,6 +49,7 @@ const Register = () => {
     let onPasswordChange = (e) => {
         let passwordValue = e.target.value;
         setPassword(passwordValue);
+
         if (!passwordValue) {
             setPasswordError("Password is required")
         } else {
@@ -55,6 +66,7 @@ const Register = () => {
 
     let onRepeatPassChange = (e) => {
         let repeatPassValue = e.target.value;
+        setRepeatPass(repeatPassValue);
 
         if (!repeatPassValue) {
             setRepeatPassError("Repeat password is required.")
@@ -64,6 +76,28 @@ const Register = () => {
             setRepeatPassError("");
         }
     }
+
+
+    let onFormSubmit = async (e) => {
+        e.preventDefault();
+        if (!usernameError && !emailError && !passwordError &&
+            !repeatPassError && username && email && password && repeatPass === password) {
+
+            let isEmailUnique = await userService.verifyEmailUnique(email);
+            let isUsernameUnique = await userService.verifyUsernameUnique(username);
+
+            if (!isEmailUnique) {
+                setEmailError("Email is already in use.")
+            }
+            if (!isUsernameUnique) {
+                setUsernameError("Username is already in use.")
+            }
+
+            await userService.registerNewUser(username, email, password);
+            navigate("/");
+        }
+    }
+
 
     return (
         <div className="row">
@@ -96,7 +130,7 @@ const Register = () => {
                                name="repeatPassword"/>
                         <span className="text-danger">{repeatPassError}</span>
                     </div>
-                    <button type="submit" className="btn btn-primary">Register</button>
+                    <button type="submit" onClick={onFormSubmit} className="btn btn-primary">Register</button>
                 </form>
             </div>
         </div>
