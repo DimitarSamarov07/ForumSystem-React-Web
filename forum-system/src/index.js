@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import {AuthProvider} from "./core/auth-context.js";
 import Layout from "./core/Layout.js";
+import NotFound from "./core/NotFound/NotFound.js";
 import Home from './home/Home.js';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
@@ -25,6 +26,7 @@ ReactDOM.render(
                             <Route path={"login"} element={<Login/>}/>
                             <Route path={"register"} element={<Register/>}/>
                         </Route>
+                        <Route path="*" element={<NotFound/>}/>
                     </Route>
                 </Routes>
             </Router>
