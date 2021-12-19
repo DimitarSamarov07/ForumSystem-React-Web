@@ -3,6 +3,7 @@ import React from 'react';
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import AdminLayout from "./admin/AdminLayout";
 import AdminSidebar from "./admin/AdminSidebar.js";
+import CategoryList from "./category/CategoryList.js";
 import {AuthProvider} from "./core/auth-context.js";
 import Layout from "./core/Layout.js";
 import NotFound from "./core/NotFound/NotFound.js";
@@ -22,8 +23,11 @@ const App = () => {
                     <Route path="/" element={<Layout/>}>
                         <Route exact path="/" element={<Home/>}/>
                         <Route path="user">
-                            <Route path={"login"} element={<Login/>}/>
-                            <Route path={"register"} element={<Register/>}/>
+                            <Route path="login" element={<Login/>}/>
+                            <Route path="register" element={<Register/>}/>
+                        </Route>
+                        <Route path="category">
+                            <Route path="list" element={<CategoryList/>}/>
                         </Route>
                         <Route path="*" element={<NotFound/>}/>
                     </Route>
