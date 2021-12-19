@@ -1,0 +1,15 @@
+/*DataTables */
+@import url("https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap.min.css");
+
+/*Font Awesome*/
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css");
+
+/*Ionicons*/
+@import url("http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css");
+
+/*Google Font */
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic");
+
+/*AdminLTE*/
+@import url("https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.8/css/AdminLTE.min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.8/css/skins/skin-blue.min.css");
