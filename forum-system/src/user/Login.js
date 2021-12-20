@@ -97,9 +97,7 @@ const Login = () => {
                         </div>
                         <div className="form-group">
                             <p>
-                                <Link to="/user/register">
-                                    <a href="javascript:void(0)">Register as a new user</a>
-                                </Link>
+                                <Link to="/user/register">Register as a new user</Link>
                             </p>
                         </div>
                     </form>

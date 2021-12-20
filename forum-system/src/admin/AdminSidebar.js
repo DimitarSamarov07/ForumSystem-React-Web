@@ -14,14 +14,10 @@ const AdminSidebar = () => {
                 </a>
                 <ul className="treeview-menu">
                     <li>
-                        <Link to="/administration/category/create">
-                            <a href="javascript:void(0)">Create</a>
-                        </Link>
+                        <Link to="/administration/category/create">Create</Link>
                     </li>
                     <li>
-                        <Link to="/administration/category/list">
-                            <a href="javascript:void(0)">List all</a>
-                        </Link>
+                        <Link to="/administration/category/list">List all</Link>
                     </li>
                 </ul>
             </li>

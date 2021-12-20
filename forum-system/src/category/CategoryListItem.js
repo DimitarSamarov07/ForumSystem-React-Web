@@ -1,5 +1,5 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 
 const CategoryListItem = ({category}) => {
     let postsAndUsersStats;
@@ -41,11 +41,9 @@ const CategoryListItem = ({category}) => {
                     <div className="col-1 text-center"><img src={category.imageUrl} style={{width: "80px"}}/>
                     </div>
                     <div className="col-10 ">
-                        <Link to={`/category/details/${category.objectId}`}>
-                            <a style={{fontSize: "1.5em"}}>
-                                {category.title}
-                            </a>
-                        </Link>
+                        <NavLink style={{fontSize: "1.5em"}} to={`/category/details/${category.objectId}`}>
+                            {category.title}
+                        </NavLink>
 
                         {category.isRecentCategory ? <div className="badge badge-success"> New</div> : ""}
                         <br/>

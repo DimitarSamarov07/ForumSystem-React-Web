@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import {Link, useNavigate} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import {UserService} from "../services/user.service.js";
 import {doLogin, doLogout, useAuthDispatch, useAuthState} from "./auth-context.js";
 import "./Header.css"
@@ -42,10 +42,9 @@ const Header = () => {
                         <ul className="navbar-nav">
                             {user ?
                                 <li className="nav-item">
-                                    <Link to={`/profile/index/${user?.username}`}>
-                                        <a className="nav-link text-dark"
-                                           href="javascript:void(0)">Hello {user?.username}</a>
-                                    </Link>
+                                    <NavLink className="nav-link text-dark" to={`/profile/index/${user?.username}`}>
+                                        Hello {user?.username}
+                                    </NavLink>
                                 </li> : ""}
 
                             {user?.isAdmin ? <HeaderAdminElements/> : ""}
@@ -58,14 +57,10 @@ const Header = () => {
                         </ul>
                         <ul className="navbar-nav flex-grow-1">
                             <li className="nav-item">
-                                <Link to="/">
-                                    <a className="nav-link text-dark" href="javascript:void(0)">Home</a>
-                                </Link>
+                                <NavLink className="nav-link text-dark" to="/">Home</NavLink>
                             </li>
                             <li className="nav-item">
-                                <Link to="/category/list">
-                                    <a className="nav-link text-dark" href="javascript:void(0)">Categories</a>
-                                </Link>
+                                <NavLink className="nav-link text-dark" to="/category/list">Categories</NavLink>
                             </li>
                         </ul>
                     </div>

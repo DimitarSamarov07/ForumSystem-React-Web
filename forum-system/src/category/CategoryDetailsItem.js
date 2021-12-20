@@ -23,9 +23,7 @@ const CategoryDetailsItem = ({category, post}) => {
             <td>
                 <div>
                     <div style={{fontSize: "1.5em"}}>
-                        <Link to={`/post/details/${post.objectId}`}>
-                            {post.title}
-                        </Link>
+                        <Link to={`/post/details/${post.objectId}`}>{post.title}</Link>
                     </div>
                     <div>
                         <h6 style={{marginBottom: 0}}>by</h6>

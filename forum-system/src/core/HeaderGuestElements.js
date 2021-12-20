@@ -1,21 +1,16 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 
 
 const HeaderGuestElements = () => {
     return (
         <>
             <li className="nav-item">
-                <Link to="/user/register">
-                    <a className="nav-link text-dark" href="javascript:void(0)">Register</a>
-                </Link>
+                <NavLink className="nav-link text-dark" to="/user/register">Register</NavLink>
 
             </li>
             <li className="nav-item">
-                <Link to="/user/login">
-                    <a className="nav-link text-dark" href="javascript:void(0)">Login</a>
-                </Link>
-
+                <NavLink className="nav-link text-dark" to="/user/login">Login</NavLink>
             </li>
         </>
     )
