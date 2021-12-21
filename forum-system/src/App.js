@@ -6,6 +6,7 @@ import CategoryListAllAdmin from "./admin/category/CategoryListAllAdmin.js";
 import CreateCategoryAdmin from "./admin/category/CreateCategoryAdmin.js";
 import EditCategoryAdmin from "./admin/category/EditCategoryAdmin.js";
 import CreatePostAdmin from "./admin/post/CreatePostAdmin.js";
+import ListCategoryPostsAdmin from "./admin/post/ListCategoryPostsAdmin.js";
 import CategoryDetails from "./category/CategoryDetails.js";
 import CategoryList from "./category/CategoryList.js";
 import {AuthProvider} from "./core/auth-context.js";
@@ -45,6 +46,7 @@ const App = () => {
                         </Route>
                         <Route path="post">
                             <Route path="create/:categoryId" element={<CreatePostAdmin/>}/>
+                            <Route path="list/:categoryId" element={<ListCategoryPostsAdmin/>}/>
                         </Route>
                     </Route>
                 </Routes>

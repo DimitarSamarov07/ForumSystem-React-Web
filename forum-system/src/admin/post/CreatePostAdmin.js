@@ -58,9 +58,7 @@ const CreatePostAdmin = () => {
 
         if (!titleError && !descriptionError) {
             await postService.createPost(title, description, categoryId, user.objectId)
-
-            // TODO: Change later
-            navigate("/administration/category/list");
+            navigate("/administration/post/list/" + categoryId);
         }
     }
 
