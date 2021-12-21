@@ -1,9 +1,10 @@
 import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {descriptionErrorCheck, titleErrorCheck} from "../../helpers/category-validator.js";
+import {CategoryValidator} from "../../helpers/category-validator.js";
 import {CategoryAdminService} from "../../services/category-admin.service.js";
 
 const categoryAdminService = new CategoryAdminService();
+const validator = new CategoryValidator();
 
 const CreateCategoryAdmin = () => {
     let [titleError, setTitleError] = useState("");
@@ -16,13 +17,13 @@ const CreateCategoryAdmin = () => {
 
     const onTitleChange = (e) => {
         let newValue = e.target.value;
-        setTitleError(titleErrorCheck(newValue));
+        setTitleError(validator.titleErrorCheck(newValue));
         setTitle(newValue);
     }
 
     const onDescriptionChange = (e) => {
         let newValue = e.target.value;
-        setDescriptionError(descriptionErrorCheck(newValue));
+        setDescriptionError(validator.descriptionErrorCheck(newValue));
         setDescription(newValue);
     }
 
@@ -35,8 +36,8 @@ const CreateCategoryAdmin = () => {
     const onFormSubmit = async (e) => {
         e.preventDefault();
 
-        setTitleError(titleErrorCheck(title));
-        setDescriptionError(descriptionErrorCheck(description));
+        setTitleError(validator.titleErrorCheck(title));
+        setDescriptionError(validator.descriptionErrorCheck(description));
 
         if (!selectedImg) {
             setSelectedImgError("Image is required.");

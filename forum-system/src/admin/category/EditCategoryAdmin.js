@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
-import {descriptionErrorCheck, titleErrorCheck} from "../../helpers/category-validator.js";
+import {CategoryValidator} from "../../helpers/category-validator.js";
 import {CategoryAdminService} from "../../services/category-admin.service.js";
 
 const categoryAdminService = new CategoryAdminService();
+const validator = new CategoryValidator();
 
 const EditCategoryAdmin = () => {
     let {id: categoryId} = useParams();
@@ -30,13 +31,13 @@ const EditCategoryAdmin = () => {
 
     const onTitleChange = (e) => {
         let newValue = e.target.value;
-        setTitleError(titleErrorCheck(newValue));
+        setTitleError(validator.titleErrorCheck(newValue));
         setTitle(newValue);
     }
 
     const onDescriptionChange = (e) => {
         let newValue = e.target.value;
-        setDescriptionError(descriptionErrorCheck(newValue));
+        setDescriptionError(validator.descriptionErrorCheck(newValue));
         setDescription(newValue);
     }
 
@@ -48,8 +49,8 @@ const EditCategoryAdmin = () => {
     const onFormSubmit = async (e) => {
         e.preventDefault();
 
-        setTitleError(titleErrorCheck(title));
-        setDescriptionError(descriptionErrorCheck(description));
+        setTitleError(validator.titleErrorCheck(title));
+        setDescriptionError(validator.descriptionErrorCheck(description));
 
         if (!titleError && !descriptionError) {
             await categoryAdminService.editCategoryById(categoryId, title, description, selectedImg);
