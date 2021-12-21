@@ -3,11 +3,13 @@ import React, {useEffect, useState} from "react";
 import {HashLoader} from "react-spinners";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import ScriptLoader from "../../helpers/script-loader.js";
 import {CategoryAdminService} from "../../services/category-admin.service.js";
 import "./CategoryListAllAdmin.css"
 import CategoryListAllAdminItem from "./CategoryListAllAdminItem.js";
 
 const categoryAdminService = new CategoryAdminService();
+const scriptLoader = new ScriptLoader();
 const LOADER_COLOR = "#367fa9";
 
 const CategoryListAllAdmin = () => {
@@ -33,22 +35,7 @@ const CategoryListAllAdmin = () => {
     }, [])
 
     if (loadDatatables && !datatablesLoaded) {
-        let script = document.createElement('script');
-        script.type = `application/javascript`;
-        script.text = `
-            $(function () {
-               $('#table').DataTable();
-             });`;
-
-        document.body.appendChild(script);
-
-        let script2 = document.createElement("script");
-        script2.type = "application/javascript";
-        script.src =
-            `https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js`;
-
-        document.body.appendChild(script2);
-
+        scriptLoader.loadDatatables();
         setDatatablesLoaded(true);
     }
 
