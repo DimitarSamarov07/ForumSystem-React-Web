@@ -13,3 +13,7 @@
 /*AdminLTE*/
 @import url("https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.8/css/AdminLTE.min.css");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.8/css/skins/skin-blue.min.css");
+
+body {
+    margin-bottom: 0;
+}
