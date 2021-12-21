@@ -8,7 +8,7 @@ import "./CategoryListAllAdmin.css"
 import CategoryListAllAdminItem from "./CategoryListAllAdminItem.js";
 
 const categoryAdminService = new CategoryAdminService();
-const LOADER_COLOR = "#e95420";
+const LOADER_COLOR = "#367fa9";
 
 const CategoryListAllAdmin = () => {
     let [categories, setCategories] = useState([]);
@@ -67,7 +67,6 @@ const CategoryListAllAdmin = () => {
         if (result.isConfirmed) {
             let success = await categoryAdminService.deleteCategoryById(category.objectId);
             if (success) {
-                await categoryAdminService.deleteCategoryById(category.objectId);
                 setCategories([]);
                 setHashLoaderActive(true);
                 setCategories(await categoryAdminService.retrieveCategoriesWithUserAndPostCounts())
