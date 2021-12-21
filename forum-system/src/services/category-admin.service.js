@@ -22,7 +22,8 @@ export class CategoryAdminService extends CategoryService {
         }
     }
 
-    async editCategoryById(id, data, imgFile) {
+    async editCategoryById(id, title, description, imgFile) {
+        let data = {title, description};
         if (imgFile) {
             data.imageUrl = await this.cloudinaryService.uploadImage(imgFile);
         }

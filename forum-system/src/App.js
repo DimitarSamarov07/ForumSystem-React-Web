@@ -1,10 +1,10 @@
 import Backendless from "backendless";
 import React from 'react';
-import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import {BrowserRouter as Router, Navigate, Route, Routes} from "react-router-dom";
 import AdminLayout from "./admin/AdminLayout";
-import AdminSidebar from "./admin/AdminSidebar.js";
 import CategoryListAllAdmin from "./admin/category/CategoryListAllAdmin.js";
 import CreateCategoryAdmin from "./admin/category/CreateCategoryAdmin.js";
+import EditCategoryAdmin from "./admin/category/EditCategoryAdmin.js";
 import CategoryDetails from "./category/CategoryDetails.js";
 import CategoryList from "./category/CategoryList.js";
 import {AuthProvider} from "./core/auth-context.js";
@@ -36,9 +36,12 @@ const App = () => {
                         <Route path="*" element={<NotFound/>}/>
                     </Route>
                     <Route path="administration" element={<AdminLayout/>}>
-                        <Route path="index" element={<AdminSidebar/>}/>
-                        <Route path="category/create" element={<CreateCategoryAdmin/>}/>
-                        <Route path="category/list" element={<CategoryListAllAdmin/>}/>
+                        <Route exact path="/administration" element={<Navigate to="category/list"/>}/>
+                        <Route path='category'>
+                            <Route path="create" element={<CreateCategoryAdmin/>}/>
+                            <Route path="list" element={<CategoryListAllAdmin/>}/>
+                            <Route path="edit/:id" element={<EditCategoryAdmin/>}/>
+                        </Route>
                     </Route>
                 </Routes>
             </Router>

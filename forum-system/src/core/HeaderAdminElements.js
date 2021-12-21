@@ -5,7 +5,7 @@ const HeaderAdminElements = () => {
     const navigate = useNavigate();
 
     const onAdminPanelOpen = () => {
-        navigate("/administration/index");
+        navigate("/administration");
 
         // Reset styles
         window.location.reload();
