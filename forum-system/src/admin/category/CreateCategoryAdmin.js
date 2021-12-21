@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
+import {descriptionErrorCheck, titleErrorCheck} from "../../helpers/category-validator.js";
 import {CategoryAdminService} from "../../services/category-admin.service.js";
 
 const categoryAdminService = new CategoryAdminService();
@@ -15,39 +16,14 @@ const CreateCategoryAdmin = () => {
 
     const onTitleChange = (e) => {
         let newValue = e.target.value;
-        titleErrorCheck(newValue);
+        setTitleError(titleErrorCheck(newValue));
         setTitle(newValue);
-    }
-
-    const titleErrorCheck = (value) => {
-        if (!value) {
-            setTitleError("Title is required.");
-        } else if (value.length < 6) {
-            setTitleError("Title should be at least 6 character long.");
-        } else if (value.length > 40) {
-            setTitleError("Title should be no more than 40 characters long.");
-        } else {
-            setTitleError("");
-        }
     }
 
     const onDescriptionChange = (e) => {
         let newValue = e.target.value;
-        descriptionErrorCheck(newValue);
+        setDescriptionError(descriptionErrorCheck(newValue));
         setDescription(newValue);
-    }
-
-    const descriptionErrorCheck = (value) => {
-        if (!value) {
-            setDescriptionError("Description is required.");
-        } else if (value.length < 20) {
-            setDescriptionError("Description should be at least 20 character long.");
-        } else if (value.length > 300) {
-            setDescriptionError("Description should be no more than 300 characters long.");
-        } else {
-            setDescriptionError("");
-        }
-
     }
 
     const onImageChange = (e) => {
@@ -59,8 +35,8 @@ const CreateCategoryAdmin = () => {
     const onFormSubmit = async (e) => {
         e.preventDefault();
 
-        titleErrorCheck(title);
-        descriptionErrorCheck(description);
+        setTitleError(titleErrorCheck(title));
+        setDescriptionError(descriptionErrorCheck(description));
 
         if (!selectedImg) {
             setSelectedImgError("Image is required.");
