@@ -1,0 +1,36 @@
+#table_wrapper > div:last-of-type {
+    display: flex;
+    align-items: flex-end;
+}
+
+
+.dataTables_paginate .pagination {
+    margin-left: 15px !important
+}
+
+.dataTables_paginate .pagination > .active > a,
+.dataTables_paginate .pagination > .active > span,
+.dataTables_paginate .pagination > .active > a:hover,
+.dataTables_paginate .pagination > .active > span:hover,
+.dataTables_paginate .pagination > .active > a:focus,
+.dataTables_paginate .pagination > .active > span:focus {
+    background-color: #3c8dbc;
+    border-color: #3c8dbc;
+    color: white;
+}
+
+.dataTables_paginate .pagination li a:hover {
+    color: white;
+    background: #367fa9;
+    border-color: #367fa9;
+}
+
+.dataTables_paginate .pagination li a {
+    color: #000000;
+    padding: 5px 15px;
+}
+
+/*Pagination Without Space*/
+.dataTables_paginate .pagination-no-space .pagination {
+    margin: 0;
+}

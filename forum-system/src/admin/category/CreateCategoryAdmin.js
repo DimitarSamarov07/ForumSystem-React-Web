@@ -66,8 +66,7 @@ const CreateCategoryAdmin = () => {
             setSelectedImgError("Image is required.");
         } else if (!titleError && !descriptionError) {
             await categoryAdminService.createNewCategory(title, description, selectedImg)
-            navigate("/");
-            window.location.reload();
+            navigate("/administration/category/list");
         }
     }
 

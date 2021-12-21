@@ -7,7 +7,6 @@ const AdminLayout = () => {
 
     return (
         <>
-
             <body className="hold-transition skin-blue sidebar-mini">
                 <div className="wrapper">
                     {/*Main Header*/}
