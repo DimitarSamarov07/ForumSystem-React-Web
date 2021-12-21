@@ -5,6 +5,7 @@ import AdminLayout from "./admin/AdminLayout";
 import CategoryListAllAdmin from "./admin/category/CategoryListAllAdmin.js";
 import CreateCategoryAdmin from "./admin/category/CreateCategoryAdmin.js";
 import EditCategoryAdmin from "./admin/category/EditCategoryAdmin.js";
+import CreatePostAdmin from "./admin/post/CreatePostAdmin.js";
 import CategoryDetails from "./category/CategoryDetails.js";
 import CategoryList from "./category/CategoryList.js";
 import {AuthProvider} from "./core/auth-context.js";
@@ -41,6 +42,9 @@ const App = () => {
                             <Route path="create" element={<CreateCategoryAdmin/>}/>
                             <Route path="list" element={<CategoryListAllAdmin/>}/>
                             <Route path="edit/:id" element={<EditCategoryAdmin/>}/>
+                        </Route>
+                        <Route path="post">
+                            <Route path="create/:categoryId" element={<CreatePostAdmin/>}/>
                         </Route>
                     </Route>
                 </Routes>

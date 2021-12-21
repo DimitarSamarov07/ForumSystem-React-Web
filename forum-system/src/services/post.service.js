@@ -57,10 +57,10 @@ export class PostService {
         return {...category, posts};
     }
 
-    async createPost({title, content}, category, userId) {
+    async createPost(title, content, categoryId, userId) {
         const newPost = await this.postStore.save({title, content});
         await this.postStore.setRelation(newPost, "author", [{objectId: userId}]);
-        await this.postStore.setRelation(newPost, "category", [{objectId: category}])
+        await this.postStore.setRelation(newPost, "category", [{objectId: categoryId}])
         return newPost.objectId;
     }
 

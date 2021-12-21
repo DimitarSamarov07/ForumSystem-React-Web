@@ -1,0 +1,4 @@
+/*Remove TinyCloud warning*/
+.tox-notification {
+    display: none !important
+}
