@@ -1,9 +1,31 @@
-import React from "react";
-import {Outlet} from "react-router-dom";
+import React, {useEffect, useState} from "react";
+import {Navigate, Outlet} from "react-router-dom";
+import {UserService} from "../services/user.service.js";
 import AdminSidebar from "./AdminSidebar.js";
 
+const userService = new UserService();
+
 const AdminLayout = () => {
-    import("./AdminLayout.css");
+    let [user, setUser] = useState();
+    let [loadingUser, setLoadingUser] = useState(true);
+
+    useEffect(() => {
+        async function doEffect() {
+            setUser(await userService.getCurrUser())
+            setLoadingUser(false);
+        }
+
+        doEffect()
+    }, [])
+
+    if (!loadingUser) {
+        if (!user || !user.isAdmin) {
+            return <Navigate to="/"/>
+        } else {
+            import("./AdminLayout.css");
+        }
+
+    }
 
     return (
         <>

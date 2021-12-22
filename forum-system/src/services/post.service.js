@@ -72,8 +72,12 @@ export class PostService {
     }
 
     async retrievePost(postId) {
-        const query = await Backendless.DataQueryBuilder.create().setRelated(["author", "category"]);
-        return await this.postStore.findById(postId, query);
+        try {
+            const query = await Backendless.DataQueryBuilder.create().setRelated(["author", "category"]);
+            return await this.postStore.findById(postId, query);
+        } catch (e) {
+            return null;
+        }
     }
 
     async retrievePostWithReplies(postId) {

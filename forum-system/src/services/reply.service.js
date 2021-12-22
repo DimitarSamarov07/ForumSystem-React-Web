@@ -26,7 +26,12 @@ export class ReplyService {
     }
 
     async getReplyById(replyId) {
-        const query = Backendless.DataQueryBuilder.create().setRelated(["author", "post"]);
-        return this.replyStore.findById(replyId, query);
+        try {
+            const query = Backendless.DataQueryBuilder.create().setRelated(["author", "post"]);
+            return await this.replyStore.findById(replyId, query);
+        } catch (e) {
+            return null;
+        }
+
     }
 }

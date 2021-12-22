@@ -15,7 +15,7 @@ const PostDetailsReplyItem = ({reply, currUser}) => {
                         <Link to={`/profile/index/${reply.author.username}`}>
                             {reply.author.username}</Link>
 
-                        {currUser.isAdmin ?
+                        {reply.author.isAdmin ?
                             <>
                                 <br/>
                                 <p className="badge badge-dark" style={{width: "60px"}}>Admin</p>
@@ -23,6 +23,7 @@ const PostDetailsReplyItem = ({reply, currUser}) => {
                             </>
                             :
                             <>
+                                <br/>
                                 <p className="badge badge-success" style={{width: "60px"}}>User</p>
                                 <br/>
                             </>
@@ -35,7 +36,7 @@ const PostDetailsReplyItem = ({reply, currUser}) => {
                         <p className="card-text" dangerouslySetInnerHTML={{__html: sanitizeHtml(reply.content)}}/>
                     </div>
 
-                    {currUser.isAdmin ?
+                    {currUser.objectId === reply.author.objectId ?
                         <Link className="btn btn-custom-post" to={`/reply/edit/${reply.objectId}`}>
                             <i className="fa fa-edit"> Edit</i></Link>
                         : ""

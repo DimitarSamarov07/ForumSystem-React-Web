@@ -13,6 +13,9 @@ import CategoryList from "./category/CategoryList.js";
 import {AuthProvider} from "./core/auth-context.js";
 import Layout from "./core/Layout.js";
 import NotFound from "./core/NotFound/NotFound.js";
+import AuthenticationGuard from "./guards/AuthenticationGuard.js";
+import PostOwnerGuard from "./guards/PostOwnerGuard.js";
+import ReplyOwnerGuard from "./guards/ReplyOwnerGuard.js";
 import Home from './home/Home.js';
 import './index.css';
 import CreatePost from "./post/CreatePost.js";
@@ -43,13 +46,13 @@ const App = () => {
                             <Route path="details/:id" element={<CategoryDetails/>}/>
                         </Route>
                         <Route path="post">
-                            <Route path="create/:categoryId" element={<CreatePost/>}/>
+                            <Route path="create/:categoryId" element={<AuthenticationGuard component={CreatePost}/>}/>
                             <Route path="details/:id" element={<PostDetails/>}/>
-                            <Route path="edit/:postId" element={<PostEdit/>}/>
+                            <Route path="edit/:postId" element={<PostOwnerGuard component={PostEdit}/>}/>
                         </Route>
                         <Route path="reply">
-                            <Route path="create/:postId" element={<CreateReply/>}/>
-                            <Route path="edit/:replyId" element={<EditReply/>}/>
+                            <Route path="create/:postId" element={<AuthenticationGuard component={CreateReply}/>}/>
+                            <Route path="edit/:replyId" element={<ReplyOwnerGuard component={EditReply}/>}/>
                         </Route>
                         <Route path="profile">
                             <Route path="index/:username" element={<ProfilePage/>}/>

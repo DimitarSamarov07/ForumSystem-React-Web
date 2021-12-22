@@ -103,6 +103,7 @@ const PostDetails = () => {
                             <>
                                 <br/>
                                 <p className="badge badge-dark" style={{width: "70px"}}>Admin</p>
+                                <br/>
                             </>
                         }
 
