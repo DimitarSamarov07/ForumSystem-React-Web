@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
+import {doLogin, useAuthDispatch} from "../core/auth-context.js";
 import {UserService} from "../services/user.service.js";
 
 let validator = require("email-validator");
@@ -14,6 +15,7 @@ const Register = () => {
     let [password, setPassword] = useState("");
     let [repeatPassError, setRepeatPassError] = useState("");
     let [repeatPass, setRepeatPass] = useState("");
+    const dispatch = useAuthDispatch();
     const navigate = useNavigate();
 
     let onUsernameChange = (e) => {
@@ -94,6 +96,7 @@ const Register = () => {
             }
 
             await userService.registerNewUser(username, email, password);
+            await doLogin(dispatch);
             navigate("/");
         }
     }
