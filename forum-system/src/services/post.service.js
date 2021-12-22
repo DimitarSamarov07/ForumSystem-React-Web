@@ -92,7 +92,7 @@ export class PostService {
         await this.postStore.remove({objectId: postId});
     }
 
-    async editPost({title, content}, postId) {
+    async editPost(title, content, postId) {
         const post = await this.retrievePost(postId)
         Object.assign(post, {title, content});
         await this.postStore.save(post);
