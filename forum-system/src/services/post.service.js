@@ -60,7 +60,7 @@ export class PostService {
     async createPost(title, content, categoryId, userId) {
         const newPost = await this.postStore.save({title, content});
         await this.postStore.setRelation(newPost, "author", [{objectId: userId}]);
-        await this.postStore.setRelation(newPost, "category", [{objectId: categoryId}])
+        await this.postStore.setRelation(newPost, "category", [{objectId: categoryId}]);
         return newPost.objectId;
     }
 
@@ -89,7 +89,12 @@ export class PostService {
     }
 
     async deletePost(postId) {
-        await this.postStore.remove({objectId: postId});
+        try {
+            await this.postStore.remove({objectId: postId});
+            return true;
+        } catch (e) {
+            return false;
+        }
     }
 
     async editPost(title, content, postId) {

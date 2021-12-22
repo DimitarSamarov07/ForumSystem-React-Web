@@ -66,7 +66,9 @@ const ListCategoryPostsAdmin = () => {
             if (success) {
                 setPosts([]);
                 setHashLoaderLoading(true);
-                setPosts(await postService.retrievePostsFromCategory(categoryId))
+                let retrievedPosts = await postService.retrievePostsFromCategory(categoryId);
+                retrievedPosts.forEach(x => x.parsedCreated = moment(x.created).format("DD/MM/YYYY hh:mm:ss"));
+                setPosts(retrievedPosts);
                 setHashLoaderLoading(false);
             }
         }
