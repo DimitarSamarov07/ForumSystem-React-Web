@@ -88,7 +88,7 @@ const PostDetails = () => {
             <div className="card">
                 <div className="card-body row" style={{position: "relative"}}>
                     <div className="col-2 text-center">
-                        <img src={post.author.profileImageUrl} className="img-circle-post"/>
+                        <img src={post.author.profileImageUrl} alt="author-pfp" className="img-circle-post"/>
 
                         <br/>
                         <Link to={`/profile/index/${post.author.username}`}>{post.author.username}</Link>
@@ -107,7 +107,6 @@ const PostDetails = () => {
                             </>
                         }
 
-                        <br/>
                         Points: {post.author.karmaPoints}
 
                     </div>
@@ -152,18 +151,6 @@ const PostDetails = () => {
 
             <br/>
 
-            {replyItems.length > 0 ?
-                <>
-                    <b style={{fontSize: "30px"}}>Replies:</b>
-                    {replyItems}
-                </>
-                :
-                <div className="text-center text-primary">
-                    <h3>There are no replies to this post</h3>
-                </div>
-            }
-
-
             <br/>
 
 
@@ -179,6 +166,15 @@ const PostDetails = () => {
                     <NavLink className="text-primary" to="/user/register">Register</NavLink>
                     now.
                 </p>}
+
+            <b style={{fontSize: "30px"}}>Replies:</b>
+            {replyItems.length > 0 ?
+                replyItems
+                :
+                <div className="text-center text-primary">
+                    <h3>There are no replies to this post</h3>
+                </div>
+            }
 
         </>
     )

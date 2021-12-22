@@ -79,7 +79,7 @@ const CategoryDetails = () => {
             <br/>
 
             {
-                category.posts?.length && category.posts?.length === 0 ?
+                category.posts?.length === 0 ?
 
                     <div className="text-center ">
                         <h2>There are no posts in this forum</h2>

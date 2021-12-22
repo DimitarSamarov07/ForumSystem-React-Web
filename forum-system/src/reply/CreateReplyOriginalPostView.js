@@ -40,17 +40,22 @@ const CreateReplyOriginalPostView = ({post}) => {
                 </div>
                 <div className="card-body row">
                     <div className="col-2 text-center">
-                        <img src={post?.author.profileImageUrl} width="60"/>
+                        <img src={post?.author.profileImageUrl} alt="author-pfp" width="60"/>
 
                         <br/>
-                        <a href="javascript:void(0)">{post?.author.username}</a>
+                        <Link to={`/profile/index/${post?.author.username}`}>{post?.author.username}</Link>
 
                         {post.author.isAdmin ?
                             <>
                                 <br/>
-                                <p className="badge badge-dark" style="width: 75px;">{post?.author.username}</p>
+                                <p className="badge badge-dark" style={{width: "75px"}}>Admin</p>
                             </>
-                            : ""
+                            :
+                            <>
+                                <br/>
+                                <p className="badge badge-success" style={{width: "70px"}}>User</p>
+                                <br/>
+                            </>
                         }
                         <br/>
                         Points:

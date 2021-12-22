@@ -77,7 +77,6 @@ const PostEdit = () => {
                     />
                 </div>
                 <button type="submit" onClick={onSubmit} className="btn btn-success">Submit</button>
-                <button type="reset" className="btn btn-danger">Reset</button>
                 <p className="text-danger">Note: You can't edit the post's title</p>
             </form>
 

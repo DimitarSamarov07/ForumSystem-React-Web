@@ -114,7 +114,6 @@ const EditPostAdmin = () => {
 
                         </div>
                         <div className="box-footer">
-                            <button type="reset" className="btn btn-default">Reset</button>
                             <button type="submit" onClick={onSubmit} className="btn btn-info pull-right">Update</button>
                         </div>
                     </form>

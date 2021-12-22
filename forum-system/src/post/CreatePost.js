@@ -97,7 +97,6 @@ const CreatePost = () => {
                     />
                     <span className="text-danger">{contentError}</span>
                 </div>
-                <button type="reset" className="btn btn-warning">Reset</button>
                 <button color="primary" className=" btn btn-danger" type="submit" onClick={onSubmit}>Create</button>
 
             </form>

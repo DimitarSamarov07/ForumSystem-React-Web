@@ -94,7 +94,6 @@ const CreateReply = () => {
 
                     </div>
                     <button className="btn btn-primary" onClick={onSubmit} type="submit">Submit reply</button>
-                    <button type="reset" className="btn btn-danger">Reset</button>
                 </form>
             </div>
         </>

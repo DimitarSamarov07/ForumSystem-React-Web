@@ -92,7 +92,6 @@ const CreateCategoryAdmin = () => {
 
                         </div>
                         <div className="box-footer">
-                            <button type="reset" className="btn btn-default">Reset</button>
                             <button type="submit" onClick={onFormSubmit} className="btn btn-info pull-right">Create
                             </button>
                         </div>
