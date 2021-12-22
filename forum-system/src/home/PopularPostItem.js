@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 import HomeBadges from "./HomeBadges.js";
 import HomeRepliesCount from "./HomeRepliesCount.js";
 
@@ -7,10 +8,9 @@ const PopularPostItem = ({post}) => {
         <tr>
             <td>
                 <div>
-                    {/*<Link to={`/post/details/${post.objectId}`}>*/}
-                    <a href="javascript:void(0)">{post.title}</a>
-                    {/*</Link>*/}
+                    <Link to={`/post/details/${post.objectId}`}>{post.title}</Link>
                 </div>
+                by
                 <div>
                     <HomeBadges item={post}/>
                 </div>

@@ -1,19 +1,16 @@
 import React from "react";
+import {NavLink} from "react-router-dom";
 
 const HomeBadges = ({item}) => {
     let badge =
-        // <Link to={`/profile/index/${item.author.username}`}>
-        <a href="javascript:void(0)"
-           className="author-name badge badge-success">{item.author.username}</a>
-    // </Link>;
+        <NavLink to={`/profile/index/${item.author.username}`}
+                 className="author-name badge badge-success">{item.author.username}</NavLink>
 
 
     if (item.author.isAdmin) {
         badge =
-            // <Link to={`/profile/index/${item.author.username}`}>
-            <a href="javascript:void(0)"
-               className="author-name badge badge-dark">{item.author.username}</a>
-        // </Link>;
+            <NavLink to={`/profile/index/${item.author.username}`}
+                     className="author-name badge badge-dark">{item.author.username}</NavLink>
     }
 
 

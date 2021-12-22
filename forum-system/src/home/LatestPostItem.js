@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 import HomeBadges from "./HomeBadges.js";
 import HomeRepliesCount from "./HomeRepliesCount.js";
 
@@ -7,11 +8,9 @@ const LatestPostItem = ({post}) => {
     return (
         <tr>
             <td>
-                {/*<Link to={`/post/details/${post.objectId}`}>*/}
-                <div><a href="javascript:void(0)">{post.title}</a></div>
-                {/*</Link>*/}
+                <div><Link to={`/post/details/${post.objectId}`}>{post.title}</Link></div>
                 <div>
-                    <h6 style={{"margin-bottom": 0}}>by</h6>
+                    <h6 style={{marginBottom: 0}}>by</h6>
                     <HomeBadges item={post}/>
 
                 </div>
