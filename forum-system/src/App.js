@@ -15,6 +15,7 @@ import Layout from "./core/Layout.js";
 import NotFound from "./core/NotFound/NotFound.js";
 import Home from './home/Home.js';
 import './index.css';
+import CreatePost from "./post/CreatePost.js";
 import Login from "./user/Login.js";
 import Register from "./user/Register.js";
 
@@ -35,6 +36,9 @@ const App = () => {
                         <Route path="category">
                             <Route path="list" element={<CategoryList/>}/>
                             <Route path="details/:id" element={<CategoryDetails/>}/>
+                        </Route>
+                        <Route path="post">
+                            <Route path="create/:categoryId" element={<CreatePost/>}/>
                         </Route>
                         <Route path="*" element={<NotFound/>}/>
                     </Route>
