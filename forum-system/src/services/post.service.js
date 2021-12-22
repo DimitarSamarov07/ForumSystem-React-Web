@@ -99,7 +99,7 @@ export class PostService {
 
     async editPost(title, content, postId) {
         const post = await this.retrievePost(postId)
-        Object.assign(post, {title, content});
+        Object.assign(post, {content});
         await this.postStore.save(post);
     }
 
