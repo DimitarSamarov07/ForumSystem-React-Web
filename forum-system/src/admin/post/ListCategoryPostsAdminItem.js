@@ -1,7 +1,16 @@
 import React from "react";
-import {NavLink} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 
 const ListCategoryPostsAdminItem = ({post, deleteSwal}) => {
+    const navigate = useNavigate();
+
+    const onViewInForumClick = () => {
+        navigate(`/post/details/${post.objectId}`);
+
+        // Force styles to reload
+        window.location.reload();
+    }
+
     return (
         <tr>
             <td>{post.objectId}</td>
@@ -14,7 +23,7 @@ const ListCategoryPostsAdminItem = ({post, deleteSwal}) => {
                     to={`/administration/post/edit/${post.category.objectId}/${post.objectId}`}>
                     Edit</NavLink>
                 <a className="link-bl" href="javascript:void(0)" onClick={() => deleteSwal(post)}>Delete</a>
-                <NavLink className="link-bl" to={`/post/details/${post.objectId}`}>View in forum</NavLink>
+                <a className="link-bl" href="javascript:void(0)" onClick={onViewInForumClick}>View in forum</a>
             </td>
         </tr>
     );

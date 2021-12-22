@@ -1,7 +1,7 @@
 import {css} from "@emotion/react";
 import * as moment from "moment";
 import React, {useEffect, useState} from "react";
-import {Link, NavLink, useParams} from "react-router-dom";
+import {Link, NavLink, useNavigate, useParams} from "react-router-dom";
 import {ClipLoader} from "react-spinners";
 import sanitizeHtml from 'sanitize-html';
 import {PostService} from "../services/post.service.js";
@@ -22,6 +22,7 @@ const PostDetails = () => {
     let [currUser, setCurrUser] = useState(null);
     let [postVotes, setPostVotes] = useState(0);
     let [dataReady, setDataReady] = useState(false);
+    let navigate = useNavigate();
 
     const override = css`
       display: block;
@@ -72,6 +73,13 @@ const PostDetails = () => {
         return <ClipLoader loading={true} size={150} color={LOADER_COLOR} css={override}/>;
     }
 
+    const redirectWithStyleReset = (url) => {
+        navigate(url);
+
+        // Force styles to reload
+        window.location.reload();
+    }
+
     return (
         <>
             <h1>{post.title}</h1>
@@ -83,7 +91,7 @@ const PostDetails = () => {
                         <img src={post.author.profileImageUrl} className="img-circle-post"/>
 
                         <br/>
-                        <a href="javascript:void(0)">{post.author.username}</a>
+                        <Link to={`/profile/index/${post.author.username}`}>{post.author.username}</Link>
 
                         {!post.author.isAdmin ?
                             <>
@@ -114,9 +122,10 @@ const PostDetails = () => {
                     }
 
                     {currUser?.isAdmin ?
-                        <NavLink className="btn btn-custom-post"
-                                 to={`/administration/post/edit/${categoryId}/${post.objectId}`}><i
-                            className="fa fa-edit"> Edit</i></NavLink> : ""
+                        <a className="btn btn-custom-post" href="javascript:void(0)"
+                           onClick={() =>
+                               redirectWithStyleReset(`/administration/post/edit/${categoryId}/${post.objectId}`)}>
+                            <i className="fa fa-edit"> Edit</i></a> : ""
                     }
                 </div>
 
