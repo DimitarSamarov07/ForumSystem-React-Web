@@ -21,6 +21,7 @@ import PostEdit from "./post/PostEdit.js";
 import CreateReply from "./reply/CreateReply.js";
 import EditReply from "./reply/EditReply.js";
 import Login from "./user/Login.js";
+import ProfilePage from "./user/ProfilePage.js";
 import Register from "./user/Register.js";
 
 Backendless.serverURL = "https://eu-api.backendless.com";
@@ -49,6 +50,9 @@ const App = () => {
                         <Route path="reply">
                             <Route path="create/:postId" element={<CreateReply/>}/>
                             <Route path="edit/:replyId" element={<EditReply/>}/>
+                        </Route>
+                        <Route path="profile">
+                            <Route path="index/:username" element={<ProfilePage/>}/>
                         </Route>
                         <Route path="*" element={<NotFound/>}/>
                     </Route>

@@ -1,8 +1,10 @@
 import Backendless from 'backendless';
+import {CloudinaryService} from "./cloudinary.service.js";
 
 export class UserService {
 
     userStore = Backendless.Data.of("Users")
+    cloudinaryService = new CloudinaryService();
 
     async getUserById(id) {
         return await this.userStore.findById(id);
@@ -83,6 +85,11 @@ export class UserService {
         } catch (e) {
             return false;
         }
+    }
+
+    async changeProfilePic(user, file) {
+        user.profileImageUrl = await this.cloudinaryService.uploadImage(file);
+        await this.userStore.save(user);
     }
 
     async logoutUser() {
