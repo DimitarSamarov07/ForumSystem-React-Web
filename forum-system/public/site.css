@@ -106,6 +106,7 @@ body {
     font-size: 16px; /* Set a font size */
     cursor: pointer; /* Mouse pointer on hover */
     right: 1px;
+    bottom: 128px;
     position: absolute;
 }
 
