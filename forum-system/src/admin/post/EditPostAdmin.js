@@ -21,7 +21,6 @@ const EditPostAdmin = () => {
             let result = await postService.retrievePost(postId)
             setTitle(result.title);
             setPost(result);
-            changeEditorValueToDescription();
         }
 
         doEffect()
@@ -41,10 +40,6 @@ const EditPostAdmin = () => {
         setContent(content);
     }
 
-    const changeEditorValueToDescription = () => {
-        console.log(content);
-
-    }
     const checkWordsCount = () => {
         let wordsCount = editorRef.current.plugins.wordcount.body.getWordCount();
         if (wordsCount === 0) {
