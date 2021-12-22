@@ -27,7 +27,7 @@ const MostPopularPosts = () => {
     }, [])
 
     const listItems = posts?.map((postItem) =>
-        <PopularPostItem post={postItem}/>
+        <PopularPostItem key={postItem.objectId} post={postItem}/>
     );
 
     if (!posts) {

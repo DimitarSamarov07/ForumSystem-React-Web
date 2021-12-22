@@ -22,7 +22,7 @@ const CategoriesCollapse = () => {
     `;
 
     const listItems = categories?.map((categoryItem) =>
-        <CollapseCategoryItem category={categoryItem}/>
+        <CollapseCategoryItem key={categoryItem.objectId} category={categoryItem}/>
     );
 
     if (!categories) {

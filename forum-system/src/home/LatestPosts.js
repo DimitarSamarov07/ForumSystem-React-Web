@@ -26,7 +26,7 @@ const LatestPosts = () => {
     }, [])
 
     const listItems = posts?.map((postItem) =>
-        <LatestPostItem post={postItem}/>
+        <LatestPostItem key={postItem.objectId} post={postItem}/>
     );
 
     if (!posts) {

@@ -13,7 +13,7 @@ const CategoryList = () => {
     }, [])
 
     categoryItems = categories.map(category =>
-        <CategoryListItem category={category}/>
+        <CategoryListItem key={category.objectId} category={category}/>
     );
 
 
