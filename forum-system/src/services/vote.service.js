@@ -28,14 +28,16 @@ export default class VoteService {
     }
 
     async changeVote(voteObj, newPolarity, authorId) {
-        voteObj.polarity = newPolarity;
-        await this.voteStore.save(voteObj);
+        if (voteObj.polarity !== newPolarity) {
+            voteObj.polarity = newPolarity;
+            await this.voteStore.save(voteObj);
 
-        const user = await this.userStore.findById(authorId);
-        const interpret = newPolarity ? 2 : -2;
-        user.karmaPoints += interpret;
+            const user = await this.userStore.findById(authorId);
+            const interpret = newPolarity ? 2 : -2;
+            user.karmaPoints += interpret;
 
-        await this.userStore.save(user);
+            await this.userStore.save(user);
+        }
     }
 
     async checkUserVote(userId, postId) {

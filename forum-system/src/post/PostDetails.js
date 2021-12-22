@@ -58,8 +58,14 @@ const PostDetails = () => {
 
     const sendVote = async (polarity) => {
         await voteService.registerVote(postId, currUser.objectId, polarity);
+
         let postVotes = await voteService.getPostVotesCount(postId);
         setPostVotes(postVotes);
+
+        // Refresh the author object so the updated points appear
+        let postShadow = Object.assign({}, post);
+        postShadow.author = await userService.getUserById(postShadow.author.objectId);
+        setPost(postShadow);
     }
 
     if (!dataReady) {
@@ -82,19 +88,18 @@ const PostDetails = () => {
                         {!post.author.isAdmin ?
                             <>
                                 <br/>
-                                <p className="badge badge-success" style={{width: "70px"}}>Admin</p>
+                                <p className="badge badge-success" style={{width: "70px"}}>User</p>
                                 <br/>
                             </>
                             :
                             <>
                                 <br/>
-                                <p className="badge badge-dark" style={{width: "70px"}}>{post.author.username}</p>
+                                <p className="badge badge-dark" style={{width: "70px"}}>Admin</p>
                             </>
                         }
 
                         <br/>
-                        Points:
-                        {post.author.karmaPoints}
+                        Points: {post.author.karmaPoints}
 
                     </div>
                     <div className="col-10">
