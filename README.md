@@ -28,7 +28,7 @@ npm start
 Don't forget to modify the .env file with your own Backendless credentials and populate the database as shown in the
 Database schema below. Feel free to open an issue if you encounter something unexpected.
 
-Enjoy :) :sparkles:
+Enjoy :sparkles:
 
 ## :hammer: Used technologies and libraries
 
