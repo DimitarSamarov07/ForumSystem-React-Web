@@ -9,7 +9,7 @@ const CategoryList = () => {
     let categoryItems;
 
     useEffect(async () => {
-        setCategories(await categoryService.retrieveCategories());
+        setCategories(await categoryService.retrieveCategoriesWithUserAndPostCounts());
     }, [])
 
     categoryItems = categories.map(category =>
@@ -25,8 +25,6 @@ const CategoryList = () => {
                     {categoryItems}
                 </tbody>
             </table>
-
-            {/*TODO: Pagination*/}
         </>
     )
 }

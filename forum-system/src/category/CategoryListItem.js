@@ -7,30 +7,25 @@ const CategoryListItem = ({category}) => {
     if (category.postsCount === 0 && category.usersCount === 0) {
         postsAndUsersStats =
             <div className="text-muted">
-                {category.postsCount} Posts by
-                {category.usersCount} Users
+                {category.postsCount} Posts by {category.usersCount} Users
             </div>;
     } else if (category.postsCount === 1 && category.usersCount === 1) {
         postsAndUsersStats =
             <div className="text-muted">
-                {category.postsCount} Post by
-                {category.usersCount} User
+                {category.postsCount} Post by {category.usersCount} User
             </div>;
     } else if (category.postsCount >= 2 && category.usersCount === 1) {
         postsAndUsersStats =
             <div className="text-muted">
-                {category.postsCount} Posts by
-                {category.usersCount} User
+                {category.postsCount} Posts by {category.usersCount} User
             </div>;
     } else if (category.postsCount >= 2 && category.usersCount >= 2) {
         postsAndUsersStats = <div className="text-muted">
-            {category.postsCount} Posts by
-            {category.usersCount} Users
+            {category.postsCount} Posts by {category.usersCount} Users
         </div>;
     } else {
         postsAndUsersStats = <div className="text-muted">
-            0 Posts by
-            0 Users
+            0 Posts by 0 Users
         </div>;
     }
 
