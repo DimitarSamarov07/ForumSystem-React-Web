@@ -56,6 +56,12 @@ const PostDetails = () => {
         return moment(created).format("DD/MM/YYYY hh:mm:ss");
     }
 
+    const sendVote = async (polarity) => {
+        await voteService.registerVote(postId, currUser.objectId, polarity);
+        let postVotes = await voteService.getPostVotesCount(postId);
+        setPostVotes(postVotes);
+    }
+
     if (!dataReady) {
         return <ClipLoader loading={true} size={150} color={LOADER_COLOR} css={override}/>;
     }
@@ -66,29 +72,17 @@ const PostDetails = () => {
             <Link to={`/category/details/${categoryId}`}>Back to category</Link>
 
             <div className="card">
-
-                {isCurrUserAuthor && !currUser?.isAdmin ?
-                    <NavLink className="btn btn-custom-post" to={`/post/edit/${post.objectId}`}><i
-                        className="fa fa-edit"> Edit</i></NavLink> : ""
-                }
-
-                {currUser?.isAdmin ?
-                    <NavLink className="btn btn-custom-post"
-                             to={`/administration/post/edit/${categoryId}/${post.objectId}`}><i
-                        className="fa fa-edit"> Edit</i></NavLink> : ""
-                }
-
-                <div className="card-body row">
+                <div className="card-body row" style={{position: "relative"}}>
                     <div className="col-2 text-center">
                         <img src={post.author.profileImageUrl} className="img-circle-post"/>
 
                         <br/>
                         <a href="javascript:void(0)">{post.author.username}</a>
 
-                        {post.author.isAdmin ?
+                        {!post.author.isAdmin ?
                             <>
                                 <br/>
-                                <p className="badge badge-success" style={{width: "70px"}}>{post.author.username}</p>
+                                <p className="badge badge-success" style={{width: "70px"}}>Admin</p>
                                 <br/>
                             </>
                             :
@@ -108,20 +102,31 @@ const PostDetails = () => {
                         <p className="card-text" dangerouslySetInnerHTML={{__html: sanitizeHtml(post?.content)}}/>
 
                     </div>
+
+                    {isCurrUserAuthor && !currUser?.isAdmin ?
+                        <NavLink className="btn btn-custom-post" to={`/post/edit/${post.objectId}`}><i
+                            className="fa fa-edit"> Edit</i></NavLink> : ""
+                    }
+
+                    {currUser?.isAdmin ?
+                        <NavLink className="btn btn-custom-post"
+                                 to={`/administration/post/edit/${categoryId}/${post.objectId}`}><i
+                            className="fa fa-edit"> Edit</i></NavLink> : ""
+                    }
                 </div>
 
                 {currUser ?
                     <div className="card-footer text-muted">
                         Posted on: {post.parsedCreated}
                         <div>
-                            <a href="javascript:void(0)" onClick="sendVote(true)">
+                            <a href="javascript:void(0)" onClick={() => sendVote(true)}>
                                 <i className="fa fa-thumbs-up"/>
                             </a>
                         </div>
 
                         <div id="votesCount">{postVotes}</div>
                         <div>
-                            <a href="javascript:void(0)" onClick="sendVote(false)">
+                            <a href="javascript:void(0)" onClick={() => sendVote(false)}>
                                 <i className="fa fa-thumbs-down"/>
                             </a>
                         </div>

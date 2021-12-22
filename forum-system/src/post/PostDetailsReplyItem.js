@@ -7,13 +7,7 @@ const PostDetailsReplyItem = ({reply, currUser}) => {
         <>
             <br/>
             <div className="card">
-                {currUser.isAdmin ?
-                    <Link className="btn btn-custom-post" to={`/reply/edit/${reply.objectId}`}>
-                        <i className="fa fa-edit"> Edit</i></Link>
-                    : ""
-                }
-
-                <div className="card-body row">
+                <div className="card-body row" style={{position: "relative"}}>
                     <div className="col-2 text-center">
                         <img src={reply.author.profileImageUrl} className="img-circle-post"/>
                         <br/>
@@ -40,6 +34,12 @@ const PostDetailsReplyItem = ({reply, currUser}) => {
                     <div className="col-10">
                         <p className="card-text" dangerouslySetInnerHTML={{__html: sanitizeHtml(reply.content)}}/>
                     </div>
+
+                    {currUser.isAdmin ?
+                        <Link className="btn btn-custom-post" to={`/reply/edit/${reply.objectId}`}>
+                            <i className="fa fa-edit"> Edit</i></Link>
+                        : ""
+                    }
                 </div>
                 <div className="card-footer text-muted">
                     Posted on: {reply.parsedCreated}
