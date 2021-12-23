@@ -3,6 +3,32 @@ import {NavLink} from "react-router-dom";
 
 
 const CollapseCategoryItem = ({category}) => {
+    let postsAndUsersStats;
+    if (category.postsCount === 0 && category.usersCount === 0) {
+        postsAndUsersStats =
+            <div className="text-muted">
+                {category.postsCount} Posts by {category.usersCount} Users
+            </div>;
+    } else if (category.postsCount === 1 && category.usersCount === 1) {
+        postsAndUsersStats =
+            <div className="text-muted">
+                {category.postsCount} Post by {category.usersCount} User
+            </div>;
+    } else if (category.postsCount >= 2 && category.usersCount === 1) {
+        postsAndUsersStats =
+            <div className="text-muted">
+                {category.postsCount} Posts by {category.usersCount} User
+            </div>;
+    } else if (category.postsCount >= 2 && category.usersCount >= 2) {
+        postsAndUsersStats = <div className="text-muted">
+            {category.postsCount} Posts by {category.usersCount} Users
+        </div>;
+    } else {
+        postsAndUsersStats = <div className="text-muted">
+            0 Posts by 0 Users
+        </div>;
+    }
+
     return (
         <tr>
             <td>
@@ -18,10 +44,8 @@ const CollapseCategoryItem = ({category}) => {
 
                         {category.description}
                         <div className="text-muted">
-                            {category.postsCount} Posts by {category.usersCount} Users
+                            {postsAndUsersStats}
                         </div>
-
-                        <br/>
 
                     </div>
 
