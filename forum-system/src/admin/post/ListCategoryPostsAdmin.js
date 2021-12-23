@@ -8,8 +8,8 @@ import withReactContent from "sweetalert2-react-content";
 import ScriptLoader from "../../helpers/script-loader.js";
 import {CategoryService} from "../../services/category.service.js";
 import {PostService} from "../../services/post.service.js";
-import "./ListCategoryPostsAdmin.css"
 import ListCategoryPostsAdminItem from "./ListCategoryPostsAdminItem.js";
+import "./styles/ListCategoryPostsAdmin.css"
 
 const postService = new PostService();
 const categoryService = new CategoryService();

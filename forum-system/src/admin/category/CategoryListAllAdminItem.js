@@ -1,6 +1,6 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
-import "./CategoryListAllAdminItem.css"
+import "./styles/CategoryListAllAdminItem.css"
 
 
 const CategoryListAllAdminItem = ({category, deleteSwal}) => {

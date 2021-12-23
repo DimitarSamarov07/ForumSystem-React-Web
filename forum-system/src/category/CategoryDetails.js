@@ -5,8 +5,8 @@ import {NavLink, useParams} from "react-router-dom";
 import {HashLoader} from "react-spinners";
 import {PostService} from "../services/post.service.js";
 import {UserService} from "../services/user.service.js";
-import "./CategoryDetails.css"
 import CategoryDetailsItem from "./CategoryDetailsItem.js";
+import "./styles/CategoryDetails.css"
 
 const postService = new PostService();
 const userService = new UserService();

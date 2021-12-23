@@ -5,8 +5,8 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import ScriptLoader from "../../helpers/script-loader.js";
 import {CategoryAdminService} from "../../services/category-admin.service.js";
-import "./CategoryListAllAdmin.css"
 import CategoryListAllAdminItem from "./CategoryListAllAdminItem.js";
+import "./styles/CategoryListAllAdmin.css"
 
 const categoryAdminService = new CategoryAdminService();
 const scriptLoader = new ScriptLoader();

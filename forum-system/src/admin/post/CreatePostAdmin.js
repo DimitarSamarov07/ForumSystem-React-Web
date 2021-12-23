@@ -7,7 +7,7 @@ import PostValidator from "../../helpers/post-validator.js";
 import {CategoryService} from "../../services/category.service.js";
 import {PostService} from "../../services/post.service.js";
 import {UserService} from "../../services/user.service.js";
-import "./CreatePostAdmin.css";
+import "./styles/CreatePostAdmin.css";
 
 const userService = new UserService();
 const postService = new PostService();
