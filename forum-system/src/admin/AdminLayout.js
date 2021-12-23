@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Navigate, Outlet} from "react-router-dom";
+import {Navigate, Outlet, useNavigate} from "react-router-dom";
 import {UserService} from "../services/user.service.js";
 import AdminSidebar from "./AdminSidebar.js";
 
@@ -8,6 +8,7 @@ const userService = new UserService();
 const AdminLayout = () => {
     let [user, setUser] = useState();
     let [loadingUser, setLoadingUser] = useState(true);
+    let navigate = useNavigate();
 
     useEffect(() => {
         async function doEffect() {
@@ -27,6 +28,11 @@ const AdminLayout = () => {
 
     }
 
+    const goToHome = () => {
+        navigate("/")
+        window.location.reload();
+    }
+
     return (
         <>
             <body className="hold-transition skin-blue sidebar-mini">
@@ -44,6 +50,7 @@ const AdminLayout = () => {
                                role="button">
                                 <span className="sr-only">Toggle navigation</span>
                             </a>
+                            <a style={{color: "black"}} href="javascript:void(0)" onClick={goToHome}>Go to home</a>
                         </nav>
                     </header>
                     <aside className="main-sidebar">
