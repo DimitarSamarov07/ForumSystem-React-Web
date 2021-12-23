@@ -27,7 +27,7 @@ const EditCategoryAdmin = () => {
         }
 
         doEffect()
-    }, [])
+    }, [categoryId, navigate])
 
     const onTitleChange = (e) => {
         let newValue = e.target.value;

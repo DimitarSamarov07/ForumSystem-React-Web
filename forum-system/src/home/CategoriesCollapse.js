@@ -11,8 +11,13 @@ const LOADER_COLOR = "#e95420";
 const CategoriesCollapse = () => {
     let [categories, setCategories] = useState(null);
 
-    useEffect(async () => {
-        setCategories(await categoryService.retrieveCategoriesWithUserAndPostCounts());
+    useEffect(() => {
+        async function doEffect() {
+            setCategories(await categoryService.retrieveCategoriesWithUserAndPostCounts());
+        }
+
+        doEffect();
+
     }, [])
 
     const override = css`

@@ -29,7 +29,7 @@ const CreateReply = () => {
         }
 
         doEffect();
-    }, [])
+    }, [postId])
 
     let editorRef = useRef(null);
 

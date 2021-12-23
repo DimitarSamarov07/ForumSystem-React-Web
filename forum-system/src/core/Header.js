@@ -13,9 +13,14 @@ const Header = () => {
     const dispatch = useAuthDispatch();
     const navigate = useNavigate();
 
-    useEffect(async () => {
-        await doLogin(dispatch);
-    }, [])
+    useEffect(() => {
+        async function doEffect() {
+            await doLogin(dispatch);
+        }
+
+        doEffect();
+
+    }, [dispatch])
 
     let logout = async () => {
         await userService.logoutUser();

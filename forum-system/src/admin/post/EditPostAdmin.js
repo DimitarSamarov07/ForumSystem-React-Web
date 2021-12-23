@@ -35,7 +35,7 @@ const EditPostAdmin = () => {
         }
 
         doEffect()
-    }, [])
+    }, [categoryId, postId])
 
 
     const editorRef = useRef(null);

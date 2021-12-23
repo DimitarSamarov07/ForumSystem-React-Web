@@ -37,7 +37,7 @@ const CreatePostAdmin = () => {
         }
 
         doEffect()
-    }, [])
+    }, [categoryId])
 
     const override = css`
       display: block;

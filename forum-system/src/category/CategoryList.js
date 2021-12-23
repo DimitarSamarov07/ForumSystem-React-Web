@@ -18,8 +18,13 @@ const CategoryList = () => {
       border-color: red;
     `;
 
-    useEffect(async () => {
-        setCategories(await categoryService.retrieveCategoriesWithUserAndPostCounts());
+    useEffect(() => {
+        async function doEffect() {
+            setCategories(await categoryService.retrieveCategoriesWithUserAndPostCounts());
+        }
+
+        doEffect()
+
     }, [])
 
     categoryItems = categories?.map(category =>

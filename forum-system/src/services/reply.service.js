@@ -3,9 +3,6 @@ import Backendless from "backendless";
 export class ReplyService {
     replyStore = Backendless.Data.of("Replies");
 
-    constructor() {
-    }
-
     async createReply(postId, userId, content) {
         const reply = {
             content: content

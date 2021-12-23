@@ -33,7 +33,7 @@ const CategoryDetails = () => {
         }
 
         doEffect();
-    }, [])
+    }, [id])
 
     const handlePageChange = async (data) => {
         if (data) {

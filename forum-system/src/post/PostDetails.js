@@ -47,7 +47,7 @@ const PostDetails = () => {
         }
 
         doEffect();
-    }, [])
+    }, [postId])
 
     let replyItems = post?.replies.map((reply) =>
         <PostDetailsReplyItem reply={reply} key={reply.objectId} currUser={currUser}/>
@@ -62,11 +62,6 @@ const PostDetails = () => {
 
         let postVotes = await voteService.getPostVotesCount(postId);
         setPostVotes(postVotes);
-
-        // Refresh the author object so the updated points appear
-        let postShadow = Object.assign({}, post);
-        postShadow.author = await userService.getUserById(postShadow.author.objectId);
-        setPost(postShadow);
     }
 
     if (!dataReady) {
@@ -106,8 +101,6 @@ const PostDetails = () => {
                                 <br/>
                             </>
                         }
-
-                        Points: {post.author.karmaPoints}
 
                     </div>
                     <div className="col-10">

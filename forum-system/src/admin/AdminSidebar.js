@@ -21,19 +21,6 @@ const AdminSidebar = () => {
                     </li>
                 </ul>
             </li>
-
-            <li className="treeview">
-                <a>
-                    <i className="fa fa-link"/> <span>Posts</span>
-                    <span className="pull-right-container">
-                <i className="fa fa-angle-left pull-right"/>
-            </span>
-                </a>
-                <ul className="treeview-menu">
-                    <li><a onClick="">Create</a>
-                    </li>
-                </ul>
-            </li>
         </ul>
     );
 }

@@ -30,7 +30,7 @@ const EditReply = () => {
         }
 
         doEffect();
-    }, [])
+    }, [replyId])
 
     let editorRef = useRef(null);
 

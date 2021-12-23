@@ -33,7 +33,7 @@ const ProfilePage = () => {
         }
 
         doEffect()
-    }, [])
+    }, [username])
 
 
     if (!user) {
@@ -52,7 +52,7 @@ const ProfilePage = () => {
             <div className="container body-content">
                 <div className="row ">
                     <div className="col-md-4 text-center">
-                        <img src={user.profileImageUrl} className="img-circle-profile"/>
+                        <img src={user.profileImageUrl} alt="author-pfp" className="img-circle-profile"/>
                     </div>
 
 

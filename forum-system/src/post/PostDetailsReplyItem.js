@@ -29,7 +29,6 @@ const PostDetailsReplyItem = ({reply, currUser}) => {
                             </>
                         }
 
-                        Points: {reply.author.karmaPoints}
 
                     </div>
                     <div className="col-10">

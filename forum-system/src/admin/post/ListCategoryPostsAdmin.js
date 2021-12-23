@@ -47,7 +47,7 @@ const ListCategoryPostsAdmin = () => {
         }
 
         doEffect()
-    }, [])
+    }, [categoryId])
 
     if (loadDatatables && !datatablesLoaded) {
         scriptLoader.loadDatatables();

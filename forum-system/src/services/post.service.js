@@ -7,10 +7,6 @@ export class PostService {
     categoryStore = Backendless.Data.of("Categories");
     replyStore = Backendless.Data.of("Replies")
 
-    constructor() {
-    }
-
-
     async retrievePostsFromCategory(categoryId) {
         const queryBuilder = Backendless.DataQueryBuilder.create().setWhereClause(`category = '${categoryId}'`)
             .setRelated(["author", "category"])
