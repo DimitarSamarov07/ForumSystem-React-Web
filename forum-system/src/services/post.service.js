@@ -35,22 +35,26 @@ export class PostService {
     }
 
     async paginatePostsFromCategory(categoryId, page, objPerPage) {
-        const offset = await PostService.calculateOffset(page, objPerPage);
-        const queryBuilder = Backendless.DataQueryBuilder
-            .create()
-            .setWhereClause(`category = '${categoryId}'`)
-            .setRelated("author")
-            .setOffset(offset)
-            .setPageSize(objPerPage);
+        try {
+            const offset = await PostService.calculateOffset(page, objPerPage);
+            const queryBuilder = Backendless.DataQueryBuilder
+                .create()
+                .setWhereClause(`category = '${categoryId}'`)
+                .setRelated("author")
+                .setOffset(offset)
+                .setPageSize(objPerPage);
 
-        const category = await this.categoryStore.findById(categoryId);
-        const posts = await this.postStore.find(queryBuilder);
+            const category = await this.categoryStore.findById(categoryId);
+            const posts = await this.postStore.find(queryBuilder);
 
-        for (const post of posts) {
-            post.repliesCount = await this.getPostRepliesCount(post.objectId)
+            for (const post of posts) {
+                post.repliesCount = await this.getPostRepliesCount(post.objectId)
+            }
+
+            return {...category, posts};
+        } catch (e) {
+            return null;
         }
-
-        return {...category, posts};
     }
 
     async createPost(title, content, categoryId, userId) {

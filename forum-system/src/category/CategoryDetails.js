@@ -1,7 +1,7 @@
 import {css} from "@emotion/react";
 import React, {useEffect, useState} from "react";
 import ReactPaginate from "react-paginate";
-import {NavLink, useParams} from "react-router-dom";
+import {NavLink, useNavigate, useParams} from "react-router-dom";
 import {HashLoader} from "react-spinners";
 import {PostService} from "../services/post.service.js";
 import {UserService} from "../services/user.service.js";
@@ -18,6 +18,7 @@ const CategoryDetails = () => {
     let [currUser, setCurrUser] = useState(null);
     let [category, setCategory] = useState(null);
     let [totalDataLength, setTotalDataLength] = useState(0);
+    let navigate = useNavigate();
 
     const override = css`
       display: block;
@@ -28,8 +29,13 @@ const CategoryDetails = () => {
     useEffect(() => {
         async function doEffect() {
             setCurrUser(await userService.getCurrUser());
-            setCategory(await postService.paginatePostsFromCategory(id, 0, POSTS_PER_PAGE));
-            setTotalDataLength(await postService.getCountOfCategoryPosts(id));
+            let categoryRetrieved = await postService.paginatePostsFromCategory(id, 0, POSTS_PER_PAGE);
+            if (!categoryRetrieved) {
+                navigate("/")
+            } else {
+                setCategory(categoryRetrieved)
+                setTotalDataLength(await postService.getCountOfCategoryPosts(id));
+            }
         }
 
         doEffect();
