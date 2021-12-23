@@ -81,15 +81,20 @@ export class PostService {
     }
 
     async retrievePostWithReplies(postId) {
-        const post = await this.retrievePost(postId);
+        try {
+            const post = await this.retrievePost(postId);
 
-        const clause = `post = '${postId}'`;
-        const query = Backendless.DataQueryBuilder.create().setWhereClause(clause).setRelated("author");
+            const clause = `post = '${postId}'`;
+            const query = Backendless.DataQueryBuilder.create().setWhereClause(clause).setRelated("author");
 
-        post.replies = await this.replyStore.find(query);
-        post.replies.forEach(x => x.parsedCreated = moment(x.created).format("DD/MM/YYYY hh:mm:ss"))
+            post.replies = await this.replyStore.find(query);
+            post.replies.forEach(x => x.parsedCreated = moment(x.created).format("DD/MM/YYYY hh:mm:ss"))
 
-        return post;
+            return post;
+        } catch (e) {
+            return null;
+        }
+
     }
 
     async deletePost(postId) {

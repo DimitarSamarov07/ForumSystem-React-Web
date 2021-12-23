@@ -32,18 +32,24 @@ const PostDetails = () => {
     useEffect(() => {
         async function doEffect() {
             let retrievedPost = await postService.retrievePostWithReplies(postId);
-            retrievedPost.parsedCreated = getConvertedDate(retrievedPost.created);
 
-            let postVotes = await voteService.getPostVotesCount(postId);
-            let currUser = await userService.getCurrUser();
+            if (!retrievedPost) {
+                navigate("/");
+            } else {
+                retrievedPost.parsedCreated = getConvertedDate(retrievedPost.created);
 
-            setCurrUser(currUser);
-            setCategoryId(retrievedPost.category.objectId);
-            setIsCurrUserAuthor(currUser?.objectId === retrievedPost.author.objectId);
-            setPostVotes(postVotes);
-            setPost(retrievedPost);
+                let postVotes = await voteService.getPostVotesCount(postId);
+                let currUser = await userService.getCurrUser();
 
-            setDataReady(true);
+                setCurrUser(currUser);
+                setCategoryId(retrievedPost.category.objectId);
+                setIsCurrUserAuthor(currUser?.objectId === retrievedPost.author.objectId);
+                setPostVotes(postVotes);
+                setPost(retrievedPost);
+
+                setDataReady(true);
+            }
+
         }
 
         doEffect();
