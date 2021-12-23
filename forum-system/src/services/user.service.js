@@ -1,6 +1,7 @@
 import Backendless from 'backendless';
 import {CloudinaryService} from "./cloudinary.service.js";
 
+const DEFAULT_PFP = "https://res.cloudinary.com/dse6krwlt/image/upload/v1640216788/user_wtqd4i.png";
 export class UserService {
 
     userStore = Backendless.Data.of("Users")
@@ -32,6 +33,7 @@ export class UserService {
 
     async registerNewUser(username, email, password) {
         const user = new Backendless.User();
+        user.profileImageUrl = DEFAULT_PFP;
         Object.assign(user, {username, email, password})
         await Backendless.UserService.register(user);
         await this.logoutUser()
