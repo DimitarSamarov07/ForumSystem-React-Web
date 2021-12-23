@@ -10,7 +10,7 @@ import "./styles/CategoryDetails.css"
 
 const postService = new PostService();
 const userService = new UserService();
-const POSTS_PER_PAGE = 10;
+const POSTS_PER_PAGE = 5;
 const LOADER_COLOR = "#e95420";
 
 const CategoryDetails = () => {
@@ -45,7 +45,7 @@ const CategoryDetails = () => {
     }
 
     let posts = category?.posts?.map(post =>
-        <CategoryDetailsItem category={category} post={post} key={post.objectId}/>
+        <CategoryDetailsItem post={post} key={post.objectId}/>
     );
 
     if (!category) {

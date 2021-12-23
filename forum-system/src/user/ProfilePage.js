@@ -73,7 +73,7 @@ const ProfilePage = () => {
                                     <span id="userEmailLabel">Email: {user.email}</span> <br/>
                                     <span id="userCreatedLabel">Member Since: {user.memberSince}</span> <br/>
                                 </p>
-                                {user.objectId === currUser.objectId ?
+                                {user.objectId === currUser?.objectId ?
                                     <ProfileImageUploadModal user={user}/> : ""
                                 }
                             </div>

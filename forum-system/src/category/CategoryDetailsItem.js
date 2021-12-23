@@ -3,7 +3,7 @@ import React from "react";
 import {Link, NavLink} from "react-router-dom";
 
 
-const CategoryDetailsItem = ({category, post}) => {
+const CategoryDetailsItem = ({post}) => {
     let repliesCountItem;
 
     if (post.repliesCount === 0) {
@@ -37,7 +37,7 @@ const CategoryDetailsItem = ({category, post}) => {
                             </NavLink>
                         }
                     </div>
-                    <div><em>Posted on: <b>{convertDate(category.created)}</b></em></div>
+                    <div><em>Posted on: <b>{convertDate(post.created)}</b></em></div>
                     {repliesCountItem}
                 </div>
             </td>
