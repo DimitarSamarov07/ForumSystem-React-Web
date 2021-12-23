@@ -161,9 +161,9 @@ const PostDetails = () => {
                 :
                 <p className="text-center text-dark">
                     You must be a registered user to add a reply.
-                    <NavLink className="text-primary" to="/user/login">Login</NavLink>
+                    <NavLink className="text-primary" to="/user/login"> Login </NavLink>
                     or
-                    <NavLink className="text-primary" to="/user/register">Register</NavLink>
+                    <NavLink className="text-primary" to="/user/register"> Register </NavLink>
                     now.
                 </p>}
 

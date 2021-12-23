@@ -9,7 +9,7 @@ const PostDetailsReplyItem = ({reply, currUser}) => {
             <div className="card">
                 <div className="card-body row" style={{position: "relative"}}>
                     <div className="col-2 text-center">
-                        <img src={reply.author.profileImageUrl} className="img-circle-post"/>
+                        <img src={reply.author.profileImageUrl} alt="author-pfp" className="img-circle-post"/>
                         <br/>
 
                         <Link to={`/profile/index/${reply.author.username}`}>
@@ -36,7 +36,7 @@ const PostDetailsReplyItem = ({reply, currUser}) => {
                         <p className="card-text" dangerouslySetInnerHTML={{__html: sanitizeHtml(reply.content)}}/>
                     </div>
 
-                    {currUser.objectId === reply.author.objectId ?
+                    {currUser?.objectId === reply.author.objectId ?
                         <Link className="btn btn-custom-post" to={`/reply/edit/${reply.objectId}`}>
                             <i className="fa fa-edit"> Edit</i></Link>
                         : ""
