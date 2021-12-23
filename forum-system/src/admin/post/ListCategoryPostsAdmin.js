@@ -1,7 +1,7 @@
 import {css} from "@emotion/react";
 import * as moment from 'moment';
 import React, {useEffect, useState} from "react";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {HashLoader} from "react-spinners";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
@@ -23,6 +23,7 @@ const ListCategoryPostsAdmin = () => {
     let [hashLoaderLoading, setHashLoaderLoading] = useState(true);
     let [loadDatatables, setLoadDatatables] = useState(false);
     let [datatablesLoaded, setDatatablesLoaded] = useState(false);
+    let navigate = useNavigate();
 
     const override = css`
       display: block;
@@ -32,13 +33,16 @@ const ListCategoryPostsAdmin = () => {
 
     useEffect(() => {
         async function doEffect() {
-            setCategory(await categoryService.retrieveCategoryById(categoryId));
+            let retrievedCategory = await categoryService.retrieveCategoryById(categoryId);
 
-            let posts = await postService.retrievePostsFromCategory(categoryId)
-            posts.forEach(x => x.parsedCreated = moment(x.created).format("DD/MM/YYYY hh:mm:ss"))
+            if (retrievedCategory) {
+                setCategory(retrievedCategory);
+                let posts = await postService.retrievePostsFromCategory(categoryId)
+                posts.forEach(x => x.parsedCreated = moment(x.created).format("DD/MM/YYYY hh:mm:ss"))
 
-            setPosts(posts);
-            setLoadDatatables(true);
+                setPosts(posts);
+                setLoadDatatables(true);
+            }
             setHashLoaderLoading(false);
         }
 
@@ -81,6 +85,9 @@ const ListCategoryPostsAdmin = () => {
                                     deleteSwal={onDeleteSwal}/>
     )
 
+    if (!hashLoaderLoading && !category) {
+        navigate("/administration/category/list");
+    }
 
     return (
         <>

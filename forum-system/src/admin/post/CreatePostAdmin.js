@@ -1,18 +1,26 @@
+import {css} from "@emotion/react";
 import {Editor} from "@tinymce/tinymce-react";
 import React, {useEffect, useRef, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
+import {HashLoader} from "react-spinners";
 import PostValidator from "../../helpers/post-validator.js";
+import {CategoryService} from "../../services/category.service.js";
 import {PostService} from "../../services/post.service.js";
 import {UserService} from "../../services/user.service.js";
 import "./CreatePostAdmin.css";
 
 const userService = new UserService();
 const postService = new PostService();
+const categoryService = new CategoryService();
 const validator = new PostValidator();
+
+const LOADER_COLOR = "#e95420";
 
 const CreatePostAdmin = () => {
     let {categoryId} = useParams();
     let [title, setTitle] = useState("");
+    let [invalid, setInvalid] = useState(false);
+    let [loading, setLoading] = useState(true);
     let [description, setDescription] = useState("");
     let [titleError, setTitleError] = useState("");
     let [descriptionError, setDescriptionError] = useState("");
@@ -21,12 +29,21 @@ const CreatePostAdmin = () => {
 
     useEffect(() => {
         async function doEffect() {
+            if (!categoryId || !await categoryService.retrieveCategoryById(categoryId)) {
+                setInvalid(true);
+            }
             setUser(await userService.getCurrUser());
+            setLoading(false);
         }
 
         doEffect()
     }, [])
 
+    const override = css`
+      display: block;
+      margin: 0 auto;
+      border-color: red;
+    `;
 
     const editorRef = useRef(null);
 
@@ -59,6 +76,14 @@ const CreatePostAdmin = () => {
         if (!titleError && !descriptionError) {
             await postService.createPost(title, description, categoryId, user.objectId)
             navigate("/administration/post/list/" + categoryId);
+        }
+    }
+
+    if (loading) {
+        return <HashLoader loading={true} size={150} color={LOADER_COLOR} css={override}/>;
+    } else {
+        if (invalid) {
+            navigate("/administration/category/list");
         }
     }
 
@@ -113,7 +138,8 @@ const CreatePostAdmin = () => {
 
                         </div>
                         <div className="box-footer">
-                            <button type="submit" onClick={onSubmit} className="btn btn-info pull-right">Create</button>
+                            <button type="submit" onClick={onSubmit} className="btn btn-info pull-right">Create
+                            </button>
                         </div>
                     </form>
                 </div>

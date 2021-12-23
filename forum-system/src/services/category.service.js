@@ -22,7 +22,11 @@ export class CategoryService {
     }
 
     async retrieveCategoryById(categoryId) {
-        return await this.categoryStore.findById({objectId: categoryId});
+        try {
+            return await this.categoryStore.findById({objectId: categoryId});
+        } catch (e) {
+            return false;
+        }
     }
 
     async populateCategoryUserAndPostData(categories) {

@@ -1,11 +1,15 @@
+import {css} from "@emotion/react";
 import {Editor} from "@tinymce/tinymce-react";
 import React, {useEffect, useRef, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
+import {HashLoader} from "react-spinners";
 import PostValidator from "../../helpers/post-validator.js";
 import {PostService} from "../../services/post.service.js";
 
 const postService = new PostService();
 const validator = new PostValidator();
+
+const LOADER_COLOR = "#e95420";
 
 const EditPostAdmin = () => {
     let {categoryId, postId} = useParams();
@@ -14,13 +18,20 @@ const EditPostAdmin = () => {
     let [content, setContent] = useState("");
     let [titleError, setTitleError] = useState("");
     let [contentError, setContentError] = useState("");
+    let [loading, setLoading] = useState(true);
+    let [invalid, setInvalid] = useState(false);
     let navigate = useNavigate();
 
     useEffect(() => {
         async function doEffect() {
-            let result = await postService.retrievePost(postId)
-            setTitle(result.title);
-            setPost(result);
+            let postResult = await postService.retrievePost(postId)
+            if (!postResult || postResult.category.objectId !== categoryId) {
+                setInvalid(true);
+            } else {
+                setTitle(postResult?.title);
+                setPost(postResult);
+            }
+            setLoading(false);
         }
 
         doEffect()
@@ -28,6 +39,11 @@ const EditPostAdmin = () => {
 
 
     const editorRef = useRef(null);
+    const override = css`
+      display: block;
+      margin: 0 auto;
+      border-color: red;
+    `;
 
     const onTitleChange = (e) => {
         let content = e.target.value;
@@ -59,6 +75,13 @@ const EditPostAdmin = () => {
             await postService.editPost(title, content, postId)
             navigate("/administration/post/list/" + categoryId);
         }
+    }
+
+    if (loading) {
+        if (invalid) {
+            navigate("/administration/category/list");
+        }
+        return <HashLoader loading={true} size={150} color={LOADER_COLOR} css={override}/>;
     }
 
     // noinspection RequiredAttributes
